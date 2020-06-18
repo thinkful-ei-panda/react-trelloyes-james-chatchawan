@@ -1,3 +1,4 @@
+//exports STORE data to modules
 export default {
   lists: [
     {
