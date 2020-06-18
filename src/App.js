@@ -1,38 +1,46 @@
-import React from 'react';
-import List from './List';
-import STORE from './store';
-import './App.css';
+import React from "react";
+import List from "./List";
+import STORE from "./store";
+import "./App.css";
 
 class App extends React.Component {
-  state = {
-        store: STORE,
-  };
+  state = STORE;
 
-  return (
-    <main className="App">
-    <header className="App-header">
-      <h1>Trelloyes!</h1>
-    </header>
-    <div className="App-list">
-      {this.state.store.lists.map(listItem => (
-        <List key={listItem.id} header={listItem.header} cardIds={listItem.cardIds} />
-      ))}
-      </div>
-  </main>
-  );
+  handleDeleteButton(card) {
+    // this.setState({
+
+    // })
+    console.log("delete button was pressed for ", card);
+  }
+
+  render() {
+    return (
+      <main className="App">
+        <header className="App-header">
+          <h1>Trelloyes!</h1>
+        </header>
+        <div className="App-list">
+          {this.state.lists.map((listItem) => (
+            <List
+            
+              key={listItem.id}
+              id={listItem.id}
+              header={listItem.header}
+              cardIds={listItem.cardIds}
+              onDeleteCard={this.handleDeleteButton}
+
+              title={props.title}
+              content={props.content}
+              onDeleteCard={props.onDeleteCard}
+            />
+          ))}
+        </div>
+      </main>
+    );
+  }
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
 
 // import React from "react";
 // import AddItemForm from './state-shopping/AddItemForm';

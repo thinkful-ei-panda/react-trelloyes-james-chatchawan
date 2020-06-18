@@ -11,7 +11,12 @@ function List(props) {
       </header>
       <div className="List-cards">
         {props.cardIds.map(listItem => (
-            <Card key={STORE.allCards[listItem].id} title={STORE.allCards[listItem].title} content={STORE.allCards[listItem].content} />
+            <Card 
+            key={props.id} 
+            id={props.id}
+            title={props.title} 
+            content={props.content} 
+            onDeleteCard={props.onDeleteCard}/>
         ))}
         
         <button type="button" className="List-add-button">
