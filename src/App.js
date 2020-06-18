@@ -3,14 +3,18 @@ import List from './List';
 import STORE from './store';
 import './App.css';
 
-function App() {
+class App extends React.Component {
+  state = {
+        store: STORE,
+  };
+
   return (
     <main className="App">
     <header className="App-header">
       <h1>Trelloyes!</h1>
     </header>
     <div className="App-list">
-      {STORE.lists.map(listItem => (
+      {this.state.store.lists.map(listItem => (
         <List key={listItem.id} header={listItem.header} cardIds={listItem.cardIds} />
       ))}
       </div>
