@@ -2,8 +2,69 @@ import React from 'react';
 import List from './List';
 import STORE from './store';
 import './App.css';
+import { render } from 'enzyme';
+
+
+ 
+// add functions to modify STATE
+
+//STEPS TO SOLUTION//
+/**
+refactor 'App' component -> uses 'state = STORE' ****
+
+***implement "event handlers" for <buttons> (as methods) in 'App' component (has access to 'setState()')
+
+***use 'callback()' "props" -> wire up "event handlers" to 'onClick()' "props" of <buttons>
+
+***utilise the "id" of each LIST && CARD implementing the <buttons>
+ */
+
+
+
 
 function App() {
+  console.log("deleteCard runs");
+
+  state = STORE // use STATE not PROPS for STORE
+list: 
+
+
+handleDeleteCard = (cardId) => {
+//need a "cardId"
+
+
+// -> remove references to CARD in LIST "cardIds" 
+// -> combine '.map()' && '.filter()' generateS a 'newList = []' (array)
+// -> deleteCard = () => {console.log("deleteCard runs")}
+
+
+//     const newItems = this.state.shoppingItems.filter(itm => itm !== item)
+//     this.setState({
+//       shoppingItems: newItems
+//     })
+//   }
+
+
+
+handleAddCard = (itemName) => {
+  // -> add CARD to 'allCards = {}' (object) 
+  // -> insert CARD "id" to appropriate LIST "cardIds"
+  // -> addCard = () => {console.log("addCard runs")}
+
+
+//     const newItems = [
+//       ...this.state.shoppingItems,
+//       { name: itemName, checked: false }
+//     ]
+//     this.setState({
+//       shoppingItems: newItems
+//     })
+//   }
+
+render() {
+
+
+}
   return (
     <main className="App">
     <header className="App-header">
@@ -22,56 +83,6 @@ export default App;
 
 
 
-
-
-
-
-
-
-
-
-// import React from "react";
-// import AddItemForm from './state-shopping/AddItemForm';
-// import ShoppingList from './state-shopping/ShoppingList';
-
-// export default class App extends React.Component {
-//   state = {
-//     shoppingItems: [
-//       /* put stub items in here for testing */
-//       { name: 'apples', checked: false },
-//       { name: 'oranges', checked: true },
-//       { name: 'bread', checked: false },
-//     ]
-//   };
-
-//   handleDeleteItem = (item) => {
-//     const newItems = this.state.shoppingItems.filter(itm => itm !== item)
-//     this.setState({
-//       shoppingItems: newItems
-//     })
-//   }
-
-//   handleCheckItem = (item) => {
-//     const newItems = this.state.shoppingItems.map(itm => {
-//       if (itm === item) {
-//         itm.checked = !itm.checked
-//       }
-//       return itm
-//     })
-//     this.setState({
-//       shoppingItems: newItems
-//     })
-//   }
-
-//   handleAddItem = (itemName) => {
-//     const newItems = [
-//       ...this.state.shoppingItems,
-//       { name: itemName, checked: false }
-//     ]
-//     this.setState({
-//       shoppingItems: newItems
-//     })
-//   }
 
 //   render() {
 //     return (
