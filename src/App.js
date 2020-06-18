@@ -3,6 +3,7 @@ import List from './List';
 import STORE from './store';
 import './App.css';
 
+
 //////////////////////GENERATOR RANDOM CARD & ID FUNCTION
 //why was this created as a variable???
 
@@ -16,6 +17,7 @@ const newRandomCard = () => {
   }
 }
 
+
 //////////////////////DELETE CARD FUNCTION
 //why was this created as a keyword function???
 
@@ -27,37 +29,80 @@ function omit(obj, keyToOmit) {
   );
 }
 
+
 //////////////////////APP is converted to a CLASS COMPONENT... why????
 class App extends Component {
 
-  // use STATE not PROPS for STORE
+  // use STATE for STORE not as "prop"...why???
   state = {
     store: STORE,
   }; 
  
 
-
   handleDeleteCard = (cardId) => {
-    console.log("handleDeleteCard runs");
+    console.log("handleDeleteCard runs")
 
-  }
+    const { lists, allCards } = this.state.store;
+
+    const newLists = lists.map(list => ({
+      ...list,
+      cardIds: list.cardIds.filter(id => id !== cardId)
+    }));
+
+    const newCards = omit(allCards, cardId);
+
+    this.setState({
+      store: {
+        lists: newLists,
+        allCards: newCards
+      }
+    })
+  };
+
 
   handleAddCard = (listId) => {
-    console.log("handleAddCard runs");
-  }
+    console.log("handleAddCard runs")
+
+    const newCard = newRandomCard()
+
+    const newLists = this.state.store.lists.map(list => {
+      if (list.id === listId) {
+	      return {
+          ...list,
+          cardIds: [...list.cardIds, newCard.id]
+        };
+      }
+      return list;
+    })
+
+    this.setState({
+      store: {
+        lists: newLists,
+        allCards: {
+          ...this.state.store.allCards,
+          [newCard.id]: newCard
+        }
+      }
+    })
+
+
+  };
+
 
   render() {
+    const { store } = this.state
     return (
-      <main className="App">
-        <header className="App-header">
+      <main className='App'>
+        <header className='App-header'>
           <h1>Trelloyes!</h1>
         </header>
-        <div className="App-list">
-          {STORE.lists.map(listItem => (
-            <List 
-              key={listItem.id} 
-              header={listItem.header} 
-              cardIds={listItem.cardIds} 
+        <div className='App-list'>
+          {store.lists.map(list => (
+            <List
+              key={list.id}
+              id={list.id}
+              header={list.header}
+              cards={list.cardIds.map(id => store.allCards[id])}
               onClickDelete={this.handleDeleteCard}
               onClickAdd={this.handleAddCard}
             />

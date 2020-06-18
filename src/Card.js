@@ -15,7 +15,11 @@ function Card(propsObject) {
       <h3>{propsObject.title}</h3>
       <p>{propsObject.content}</p>
     </div>
-  );
+  )
+}
+
+Card.propTypes = {
+  onClickDelete: () => {}
 }
 
 export default Card;
