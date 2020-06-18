@@ -3,79 +3,73 @@ import List from './List';
 import STORE from './store';
 import './App.css';
 
- 
-// add functions to modify STATE
+//////////////////////GENERATOR RANDOM CARD & ID FUNCTION
+//why was this created as a variable???
 
-//STEPS TO SOLUTION//
-/**
+const newRandomCard = () => {
+  const id = Math.random().toString(36).substring(2, 4)
+    + Math.random().toString(36).substring(2, 4);
+  return {
+    id,
+    title: `Random Card ${id}`,
+    content: 'lorem ipsum',
+  }
+}
 
-***implement "event handlers" for <buttons> (as methods) in 'App' component (has access to 'setState()')
+//////////////////////DELETE CARD FUNCTION
+//why was this created as a keyword function???
 
-***use 'callback()' "props" -> wire up "event handlers" to 'onClick()' "props" of <buttons>
+function omit(obj, keyToOmit) {
+  return Object.entries(obj).reduce(
+    (newObj, [key, value]) =>
+        key === keyToOmit ? newObj : {...newObj, [key]: value},
+    {}
+  );
+}
 
-***utilise the "id" of each LIST && CARD implementing the <buttons>
- */
-
-
-
-
+//////////////////////APP is converted to a CLASS COMPONENT... why????
 class App extends Component {
-  state = STORE // use STATE not PROPS for STORE
-  /*
-  { 
-    lists: ,
-    allCards: ,
-  } 
-  */
+
+  // use STATE not PROPS for STORE
+  state = {
+    store: STORE,
+  }; 
+ 
 
 
   handleDeleteCard = (cardId) => {
-    //need a "cardId"
+    console.log("handleDeleteCard runs");
 
-
-    // -> remove references to CARD in LIST "cardIds" 
-    // -> combine '.map()' && '.filter()' generateS a 'newList = []' (array)
-    // -> deleteCard = () => {console.log("deleteCard runs")}
-
-
-    // const newItems = this.state.shoppingItems.filter(itm => itm !== item)
-    // this.setState({
-    // shoppingItems: newItems
-    // })
   }
 
   handleAddCard = (listId) => {
-    // -> add CARD to 'allCards = {}' (object) 
-    // -> insert CARD "id" to appropriate LIST "cardIds"
-    // -> addCard = () => {console.log("addCard runs")}
-
-
-    // const newItems = [
-    //   ...this.state.shoppingItems,
-    //   { name: itemName, checked: false }
-    // ]
-    // this.setState({
-    //   shoppingItems: newItems
-    //   })
+    console.log("handleAddCard runs");
   }
 
   render() {
     return (
       <main className="App">
-      <header className="App-header">
-      <h1>Trelloyes!</h1>
-      </header>
-      <div className="App-list">
-      {STORE.lists.map(listItem => (
-      <List key={listItem.id} header={listItem.header} cardIds={listItem.cardIds} />
-      ))}
-      </div>
+        <header className="App-header">
+          <h1>Trelloyes!</h1>
+        </header>
+        <div className="App-list">
+          {STORE.lists.map(listItem => (
+            <List 
+              key={listItem.id} 
+              header={listItem.header} 
+              cardIds={listItem.cardIds} 
+              onClickDelete={this.handleDeleteCard}
+              onClickAdd={this.handleAddCard}
+            />
+          ))}
+        </div>
       </main>
-    )
+    );
   }
 
 }
 
-
+//CONSOLE LOG TEST//
+console.log('App component is working');
 
 export default App;
