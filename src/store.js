@@ -1,10 +1,9 @@
-//exports STORE data to modules
 export default {
   lists: [
     {
       id: '1',
       header: 'First list',
-      cardIds: ['a', 'b', 'e', 'f', 'g', 'j', 'l', 'm'],
+      cardIds: [ 'a', 'b', 'e', 'f', 'g', 'j', 'l', 'm' ],
     },
     {
       id: '2',
@@ -14,12 +13,12 @@ export default {
     {
       id: '3',
       header: 'Third list',
-      cardIds: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm'],
+      cardIds: [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm' ],
     },
     {
       id: '4',
       header: 'Fourth list',
-      cardIds: ['l', 'm'],
+      cardIds: [ 'l', 'm' ],
     },
   ],
   allCards: {
@@ -38,3 +37,7 @@ export default {
     'm': { id: 'm', title: 'Thirteenth card', content: 'lorem ipsum' },
   },
 }
+
+/**
+ * exports "STORE" to other REACT components
+ */

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import List from './List';
-import STORE from './store';
+import STORE from './STORE';
 import './App.css';
 
 
 //////////////////////GENERATOR RANDOM CARD & ID FUNCTION
-//why was this created as a variable???
+//provided by the assignment--> grok it later!
+//created as a VARIABLE for readability & easily pass to other functions
 
 const newRandomCard = () => {
   const id = Math.random().toString(36).substring(2, 4)
@@ -19,7 +20,7 @@ const newRandomCard = () => {
 
 
 //////////////////////DELETE CARD FUNCTION
-//why was this created as a keyword function???
+//provided by the assignment--> grok it later!
 
 function omit(obj, keyToOmit) {
   return Object.entries(obj).reduce(
@@ -40,7 +41,7 @@ class App extends Component {
  
 
   handleDeleteCard = (cardId) => {
-    console.log("handleDeleteCard runs")
+    console.log("handleDeleteCard runs") //<-- console.log to test it runs
 
     const { lists, allCards } = this.state.store;
 
@@ -61,7 +62,7 @@ class App extends Component {
 
 
   handleAddCard = (listId) => {
-    console.log("handleAddCard runs")
+    console.log("handleAddCard runs") //<-- console.log to test it runs
 
     const newCard = newRandomCard()
 
@@ -84,19 +85,21 @@ class App extends Component {
         }
       }
     })
-
-
   };
 
 
   render() {
+    /* sets the CURRENT STATE of STORE as a VARIABLE???*/
     const { store } = this.state
+
+    /* renders DOM HTML using CURRENT STATE */
     return (
       <main className='App'>
         <header className='App-header'>
           <h1>Trelloyes!</h1>
         </header>
         <div className='App-list'>
+          {/* CURRENT STATE of STORE mapped with LIST component */}
           {store.lists.map(list => (
             <List
               key={list.id}
@@ -114,7 +117,6 @@ class App extends Component {
 
 }
 
-//CONSOLE LOG TEST//
-console.log('App component is working');
+console.log('App component is working'); //<-- console.log to test it runs
 
-export default App;
+export default App; //<-- exports APP to other components (i.e. to use in INDEX)

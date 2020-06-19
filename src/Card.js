@@ -1,19 +1,17 @@
-import React from "react";
+import React from 'react';
 import './Card.css';
 
-
-function Card(propsObject) {
+export default function Card(props) {
   return (
-    <div className="Card">
-      <button 
-        type="button"
-        //applies BUTTON CLICK LISTENER
-        onClick={() => propsObject.onClickDelete(propsObject.id)}
-      > 
+    <div className='Card'>
+      <button
+        type='button'
+        onClick={() => props.onClickDelete(props.id)}
+      >
         delete
       </button>
-      <h3>{propsObject.title}</h3>
-      <p>{propsObject.content}</p>
+      <h3>{props.title}</h3>
+      <p>{props.content}</p>
     </div>
   )
 }
@@ -21,5 +19,3 @@ function Card(propsObject) {
 Card.propTypes = {
   onClickDelete: () => {}
 }
-
-export default Card;
